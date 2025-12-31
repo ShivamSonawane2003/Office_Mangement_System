@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+.env.local
+venv/
+node_modules/
+build/
+dist/
+.DS_Store
+*.log
+faiss_index*
+.pytest_cache/
+.coverage
+htmlcov/

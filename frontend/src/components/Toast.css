@@ -1,0 +1,170 @@
+/* Toast Notification Styles */
+
+.toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 400px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  color: #333;
+  font-size: 14px;
+  animation: slideInRight 0.3s ease;
+  z-index: 2000;
+  border-left: 4px solid #4CAF50;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(400px);
+  }
+}
+
+.toast.toast-success {
+  border-left-color: #4CAF50;
+  background-color: #f1f8f4;
+  color: #1b5e20;
+}
+
+.toast.toast-error {
+  border-left-color: #f44336;
+  background-color: #feebee;
+  color: #b71c1c;
+}
+
+.toast.toast-warning {
+  border-left-color: #ff9800;
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.toast.toast-info {
+  border-left-color: #2196F3;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.toast.toast-undo {
+  border-left-color: #2196F3;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toast-undo-btn {
+  background-color: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.toast-undo-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.toast-close {
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: 12px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.toast-close:hover {
+  opacity: 1;
+}
+
+/* Dark mode support */
+[data-theme="dark"] .toast {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+[data-theme="dark"] .toast.toast-success {
+  background-color: #1b5e20;
+  color: #c8e6c9;
+  border-left-color: #81c784;
+}
+
+[data-theme="dark"] .toast.toast-error {
+  background-color: #b71c1c;
+  color: #ffcdd2;
+  border-left-color: #ef5350;
+}
+
+[data-theme="dark"] .toast.toast-warning {
+  background-color: #e65100;
+  color: #ffe0b2;
+  border-left-color: #ffb74d;
+}
+
+[data-theme="dark"] .toast.toast-info {
+  background-color: #0d47a1;
+  color: #bbdefb;
+  border-left-color: #64b5f6;
+}
+
+[data-theme="dark"] .toast.toast-undo {
+  background-color: #0d47a1;
+  color: #bbdefb;
+  border-left-color: #64b5f6;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .toast {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .toast-message {
+    font-size: 13px;
+  }
+
+  .toast-undo-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}

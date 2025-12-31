@@ -1,0 +1,53 @@
+[Unit]
+Description=Office Management System Backend (FastAPI with Gunicorn)
+After=network.target mysql.service
+Requires=mysql.service
+
+[Service]
+Type=notify
+User=officeapp
+Group=officeapp
+WorkingDirectory=/var/www/office-management/backend
+Environment="PATH=/var/www/office-management/backend/venv/bin"
+Environment="PYTHONUNBUFFERED=1"
+Environment="ENVIRONMENT=production"
+
+# Gunicorn command with production settings
+ExecStart=/var/www/office-management/backend/venv/bin/gunicorn \
+    app.main:app \
+    --workers 4 \
+    --worker-class uvicorn.workers.UvicornWorker \
+    --bind 127.0.0.1:8002 \
+    --timeout 120 \
+    --keep-alive 5 \
+    --max-requests 1000 \
+    --max-requests-jitter 50 \
+    --access-logfile - \
+    --error-logfile - \
+    --log-level info
+
+# Restart policy
+Restart=always
+RestartSec=10
+StartLimitInterval=300
+StartLimitBurst=5
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/office-management/backend/uploads /var/www/office-management/backend/logs
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=office-management-backend
+
+[Install]
+WantedBy=multi-user.target
+
